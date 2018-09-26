@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+<script>
+     let 小明 = {
+            home:'杭州',
+            job:'web前端',
+            age:28,
+            mm:[
+                {
+                    name:'小红',
+                    age:16,
+                    job:'高中生'
+                },
+                {
+                    name:'小如花',
+                    age:14,
+                    job:'初中生'
+                }
+            ]
+        }    
+    let p = '<p>小明：';
+    let ul ='<ul>';
+    for(let attr in 小明){
+        if(attr==='mm'){
+            let mm = 小明.mm,
+            len = mm.length;
+            p = '他有'+ len +'个妹妹';
+            for(let i=0 ; i<len;i++){
+            ul +=`<ul> <li>名字叫：${mm[i].name},
+                    年龄：${mm[i].age},
+                    学历：${mm[i].job}</li>`;
+            ul += '</ul>';
+            }
+
+
+
+        }else{
+            p += attr + 小明[attr]+' ，';
+        p += '</p>'
+             }
+    }
+    box.innerHTML=p
+</script>
+</body>
+</html>

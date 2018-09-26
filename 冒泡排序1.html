@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+</head>
+<body>
+<script>
+    let ary = [11, 2, 8, 6, 4,];
+    for (let j = 0; j < ary.length - 1; j++) {
+        let b = true;
+        for (let i = 0; i < ary.length - 1 - j; i++) {
+            if (ary[i] > ary[i + 1]) {
+                let a = ary[i];
+                ary[i] = ary[i + 1];
+                ary[i + 1] = a;
+                a = false
+            }
+        }
+        if (b) {
+            break
+        }
+    }
+    console.log(ary);
+</script>
+</body>
+</html>

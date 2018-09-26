@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+.active{
+    background: yellow;
+}
+div{
+    width:150px;
+    height:50px;
+    border: 1px solid #000;
+    display: none;
+}
+div.show{
+    display: block;
+}
+
+</style>
+</head>
+<body>
+    <button class="active">新闻</button>
+    <button>体育</button>
+    <button>游戏</button>
+    <div class="show">风台</div>
+    <div>不穿队服</div>
+    <div>lrng夺冠了</div>
+<script>
+    const buts = document.querySelectorAll('button'),
+          divs = document.querySelectorAll('div');
+          let but=buts[0];
+          
+          for(var i=0;i<buts.length;i++){
+              buts[i].index=i;
+              buts[i].onclick = function(){
+                but.className = '';
+                divs[but.index].className = '';
+                this.className = 'sctive';
+                divs[this.index].className = 'show';
+                but = this;
+              }
+          }
+
+</script>
+</body>
+</html>

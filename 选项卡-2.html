@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+    *{margin: 0;padding: 0}
+        .but{background:red}
+        div{width: 300px;height: 100px;border: 2px solid #000;display: none}
+        div.show{display:block}
+</style>
+</head>
+<body>
+    <button class="but">按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <div class="show">内容1</div>
+    <div>内容2</div>
+    <div>内容3</div>
+<script>
+    //获取标签
+    const buts=document.querySelectorAll('button')
+    const divs=document.querySelectorAll('div')
+    /*1.每一个button点击产生效果：全部按钮class=''；当前按钮class='but';效果是一个函数。全部按钮，所以又需要建立一个循环。
+      2.buts完成之后，要建立和divs的关系:每一个buts[i]都对应一个div
+       （buts[i]的xxx等于i；this指onclick的对象，也代表点击的当前按钮）*/
+    for (var i=0;i<buts.length;i++){
+        buts[i].xxx=i
+        buts[i].onclick=function(){
+            for (var j=0;j<buts.length;j++){
+                buts[j].className=''
+                divs[j].className=''
+
+                this.className='but'
+                divs[this.xxx].className='show'
+            }
+        }
+    }
+      
+</script>
+</body>
+</html>

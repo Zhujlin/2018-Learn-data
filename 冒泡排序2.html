@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+</head>
+<body>
+<script>
+    let ary = [45, 78, 23, 14, 87, 12];
+for (let i=0;i<ary.length;i++){
+    let cur = true;
+    for (let j=0;j<ary.length;j++){
+        if(ary[j]>ary[j+1]){
+            let c = ary[j];
+            ary[j] = ary[j+1];
+            ary[j+1]=c;
+            cur = false;
+        }
+    }
+    if (cur){break}
+}
+    console.log(ary);
+</script>
+</body>
+</html>
