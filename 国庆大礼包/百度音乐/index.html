@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="baidu.css"/>
+</head>
+
+<body>
+<div class="wrap">
+    <div class="baidu">
+        <ul id="list">
+            <li>
+                <div>️</div>
+                <span>泡沫</span>
+                <span>邓紫棋</span>
+            </li>
+            <li>
+                <div>️</div>
+                <span>说爱你</span>
+                <span>蔡依林</span>
+            </li>
+            <li>
+                <div>️</div>
+                <span>稻香</span>
+                <span>周杰伦</span>
+            </li>
+            <li>
+                <div>️</div>
+                <span>我的梦</span>
+                <span>张靓颖</span>
+            <li>
+                <div>️</div>
+                <span>无处安放</span>
+                <span>白若溪</span>
+            </li>
+            <li>
+                <div>️</div>
+                <span>怎么说我不爱你</span>
+                <span>萧敬腾</span>
+            </li>
+        </ul>
+        <div class="select">
+            <span class="selectAll">️<span>全选</span></span>
+            <div class="others">
+                <span id="collect"><em></em>收藏</span>
+                <span id="add"><em></em>添加</span>
+                <span id="del"><em></em>删除</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const lis = document.getElementsByTagName('li');
+    const ul = document.querySelector('ul');
+    const selectAll = document.querySelector('.selectAll');
+    const div = ul.getElementsByTagName('div');
+    let a = [];
+    /****************************单选******************************************/
+    for (let j = 0; j < div.length; j++) {
+        div[j].onclick = function () {
+            if (this.innerText === '️') {
+                this.innerText = '√';
+                lis[j].style.background = '#DDDDDD'
+            } else {
+                this.innerText = '️';
+                lis[j].style.background = ''
+            }
+        }
+    }
+
+    /****************************全选******************************************/
+
+    selectAll.onclick = function () {
+        if (selectAll.innerHTML === '️<span>全选</span>') {
+            selectAll.innerHTML = '√<span>全选</span>';
+            for (let i = 0; i < div.length; i++) {
+                div[i].innerHTML = '√';
+                lis[i].style.background = '#DDDDDD'
+            }
+        }
+        else {
+            selectAll.innerHTML = '️<span>全选</span>';
+            for (let z = 0; z < div.length; z++) {
+                div[z].innerHTML = '️';
+                lis[z].style.background = ''
+            }
+        }
+    };
+    /****************************删除 del******************************************/
+        const del = document.getElementById('del');
+        del.onclick = function () {
+            for (let i = 0; i < div.length; i++) {
+                if (div[i].innerText === '√') {
+                    lis[i].style.background = 'black';
+                    div[i].innerText = ''
+                }
+                else{
+                    lis[i].style.background = '';
+                }
+            }
+        };
+    /****************************添加 add******************************************/
+    //    const add = document.getElementById('add');
+    //    add.onclick = function () {
+    //        for (let i = 0; i < div.length; i++) {
+    //            if (div[i].innerText === '√') {
+    //                lis[i].style.background = 'white';
+    //            }
+    //        }
+    //    };
+    /****************************收藏 collect****************************/
+    //const collect = document.getElementById('collect');
+
+    //    collect.onclick = function () {
+    //        for (let i = 0; i < div.length; i++) {
+    //            if (div[i].innerText === '√') {
+    //                lis[i].style.background = 'pink';
+    //            }
+    //        }
+    //    };
+    /****************************面向对象 封装一下****************************/
+    function Tab() {
+    }
+    let t = new Tab;
+    Tab.prototype.play = function (colour) {
+        for (let i = 0; i < div.length; i++) {
+            if (div[i].innerText === '√' && lis[i].style.background !== colour) {
+                lis[i].style.background = colour;
+            }
+        }
+    };
+
+    collect.onclick = function () {
+        t.play('#FFB7DD');
+
+//        for (let i = 0; i < div.length; i++) {
+//            if (lis[i].style.background === '#FFB7DD') {
+//                lis[i].style.background = '';
+//            }
+//        }
+//想要有颜色的情况下，再点击一次，清除颜色，相当于取消‘收藏’
+    };
+    add.onclick = function () {
+        t.play('#FFFFBB')
+    };
+//    del.onclick = function () {
+//        t.play('#000000')
+//    }
+
+</script>
+</body>
+
+</html>
