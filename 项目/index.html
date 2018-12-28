@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>24tidy.泰笛-主页</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        -webkit-box-sizing: border-box;
+        /* -moz-box-sizing: border-box; */
+        box-sizing: border-box;
+    }
+
+    .all {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .head {
+        width: 100%;
+        position: relative;
+    }
+
+    .head-all {
+        width: 100%;
+        height: 2.7rem;
+        position: absolute;
+        /* border: 1px solid red; */
+    }
+
+    .logo {
+        display: inline-block;
+        width: 165px;
+        /* background-image: url("./images/绿植_03.png");线上地址 */
+        background: no-repeat left center;
+        background-size: 165px auto;
+        margin: 1rem 0 0 15.5rem;
+    }
+
+    #head-num {
+        display: inline-block;
+        /* border: 1px solid black; */
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 5px;
+        padding: 6px 30px;
+        float: right;
+        margin-right: 11rem;
+        margin-top: 0.6rem;
+        height: 3rem;
+        line-height: 2.4rem;
+        font-size: 12px;
+    }
+
+    .head-link {
+        text-decoration: none;
+        font-size: 12px;
+        color: #333;
+        float: right;
+        font-size: 0.8rem;
+    }
+
+    .dotted {
+        color: #333;
+        margin: 0 20px;
+        float: right;
+    }
+
+    img {
+        vertical-align: middle;
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .head-bg {
+        width: 100%;
+        z-index: 1;
+    }
+
+    .box1 {
+        width: 100%;
+        height: 45rem;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .box1-1 {
+        width: 19rem;
+        position: absolute;
+        margin: 5rem 0 0 16rem;
+
+    }
+
+    .box1-1-1 {
+        width: 18rem;
+        height: 15rem;
+        position: absolute;
+        background: green;
+        margin: 6rem 0 0 43rem;
+    }
+
+    .box1-2 {
+        width: 30rem;
+        position: absolute;
+        margin: 22rem 0 0 39rem;
+    }
+
+    .box1-2-1 {
+        width: 20rem;
+        height: 12rem;
+        position: absolute;
+        background: yellow;
+        margin: 29rem 0 0 16rem;
+    }
+
+    .box3 {
+        width: 53rem;
+        height: 6.4rem;
+        border-bottom: 2px solid #999;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .box3-1 {
+        width: 9rem;
+        height: 9rem;
+        background: green;
+        position: absolute;
+        margin: 1rem 0 0 22rem;
+    }
+
+    .box3-2 {
+        height: 8rem;
+        width: 53rem;
+        margin: 0 auto;
+        border: 1px solid #999
+    }
+
+    .box3-2-1 {
+        width: 19rem;
+        height: 3rem;
+        border: 1px solid #999;
+        margin: auto;
+        margin-top: 4.5rem;
+    }
+
+    .box4 {
+        height: 34rem;
+        width: 53rem;
+        border: 1px solid rgb(8, 8, 8);
+        margin: auto;
+        position: relative;
+        /* padding: 0.4rem; */
+    }
+
+    .box4-1 {
+        width: 12.6rem;
+        height: 16.4rem;
+        display: inline-block;
+        border: 1px solid red;
+        margin: 0.19rem;
+    }
+
+    .box5 {
+        height: 14rem;
+        width: 53rem;
+        border: 1px solid green;
+        margin: auto;
+    }
+
+    .box5-1 {
+        width: 52.9rem;
+        height: 6.1rem;
+        border-bottom: 2px solid #999;
+    }
+
+    .box5-2 {
+        width: 52.9rem;
+        height: 4rem;
+        border: 1px solid red;
+    }
+
+    .box5-3 {
+        width: 14rem;
+        height: 9rem;
+        background: green;
+        position: absolute;
+        margin: 0 0 0 19.5rem
+    }
+
+    .box5-4 {
+        width: 5rem;
+        height: 1.8rem;
+        border: 1px solid black;
+        border-radius: 1rem;
+        margin: 1rem auto;
+
+    }
+
+    .box5-1-2 {
+        line-height: 1.8rem;
+        margin-left: 1rem;
+        font-size: 0.4rem;
+    }
+
+    .box6{
+        width: 53rem;
+        height: 15.5rem;
+        border: 1px solid rgb(8, 8, 8);
+        margin: auto;
+        /* position: relative; */
+        /* display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: 7.5rem 7.5rem;
+        /* 网格项之间添加一个间隙 */
+        /* grid-gap: 5px;
+        grid-template-areas:
+                "h h h h h h "
+                "h h h h h h "; */ 
+           
+    }
+    .box6-1{
+        width: 8.566rem;
+        height: 7.5rem;
+        display: inline-block;
+        border: 1px solid rgb(8, 8, 8);
+        /* grid-area: h; */
+    }
+    .box7 {
+        height: 11rem;
+        width: 53rem;
+        border: 1px solid green;
+        margin: auto;
+    }
+    .box7-1 {
+        width: 52.9rem;
+        height: 7rem;
+        border-bottom: 2px solid #999;
+    }
+
+    .box7-2 {
+        width: 52.9rem;
+        height: 4rem;
+        border: 1px solid red;
+    }
+
+    .box7-3 {
+        width: 14rem;
+        height: 7rem;
+        background: green;
+        position: absolute;
+        margin: 2rem 0 0 19.5rem
+    }
+</style>
+
+<body>
+    <div class="all">
+        <!-- 头部菜单 -->
+        <header class="head">
+            <div class="head-all">
+                <!-- 头部logo -->
+                <a class='logo' title="24tidy泰笛" href="#">
+                    <!-- 暂时用一下，线上用.logo background-image:url() -->
+                    <img src="./images/logo.png" alt="">
+                </a>
+                <!-- 头部导航 -->
+                <div id="head-num">
+                    <a href="#" class="head-link">首页</a>
+                    <span class="dotted">|</span>
+                    <a href="#" class="head-link">泰笛业务</a>
+                    <span class="dotted">|</span>
+                    <a href="#" class="head-link">新闻动态</a>
+                    <span class="dotted">|</span>
+                    <a href="#" class="head-link">关于我们</a>
+                </div>
+            </div>
+
+            <!-- 头部背景 -->
+            <div class="head-bg">
+                <img src="./images/头部背景_01.png" alt="首页">
+            </div>
+        </header>
+        <!-- 第一部分展示 -->
+        <div class="box1">
+            <div class="box1-1"><img src="./images/绿植_03.png" alt=""></div>
+            <div class="box1-1-1"></div>
+            <div class="box1-2"><img src="./images/绿植_04.png" alt=""></div>
+            <div class="box1-2-1"></div>
+        </div>
+        <!-- 第二部分 -->
+        <div class="box2"><img src="./images/绿植_02.png" alt=""></div>
+        <!-- 第三部分 -->
+        <div class="box3">
+            <div class="box3-1"></div>
+        </div>
+        <div class="box3-2">
+            <div class="box3-2-1"></div>
+        </div>
+        <!-- 第四部分 -->
+        <div class="box4">
+            <div class="box4-1"></div>
+            <div class="box4-1"></div>
+            <div class="box4-1"></div>
+            <div class="box4-1"></div>
+            <div class="box4-1"></div>
+            <div class="box4-1"></div>
+            <div class="box4-1"></div>
+            <div class="box4-1"></div>
+        </div>
+        <!-- 第五部分 -->
+        <div class="box5">
+            <div class="box5-4"><span class="box5-1-2">MORE+</span></div>
+            <div class="box5-3"></div>
+            <div class="box5-1"></div>
+            <div class="box5-2"></div>
+        </div>
+        <!-- 第六部分 -->
+        <div class="box6">
+            <div class="box6-1"></div>
+            <div class="box6-1"></div>
+            <div class="box6-1"></div>
+            <div class="box6-1"></div>
+            <div class="box6-1"></div>
+            <div class="box6-1"></div>
+            <div class="box6-1"></div>
+            <div class="box6-1"></div>            
+            <div class="box6-1"></div>
+            <div class="box6-1"></div>
+            <div class="box6-1"></div>
+            <div class="box6-1"></div>
+        </div>
+         <!-- 第七部分 -->
+         <div class="box7">
+                <div class="box7-3"></div>
+                <div class="box7-1"></div>
+                <div class="box7-2"></div>
+            </div>
+    </div>
+</body>
+
+</html>

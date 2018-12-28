@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #bg{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            /* background:url(./imgs/helloworld.jpg); */
+            background-size: cover;
+            overflow: hidden;
+            background-color: rgba(212, 215, 216, 0.616);
+        }
+        #wrap{
+            margin: 150px auto;
+            border: 1px solid #164B39;
+            border-radius: .5rem;
+            background-color: #B8E8E0;
+            width: 400px;
+            height:300px;
+            padding: 30px;
+            
+        }
+        h2{
+            text-align: center;
+        }
+        ul{
+            /* margin-left: 110px; */
+            width: 300px;
+            height: 200px;
+            margin:20px 0 0 92px;
+        }
+        li{
+            list-style:none;
+            margin: 20px;
+        }
+        input{
+            width: 173px;
+            height: 25px;
+            border-radius: 0.3rem;
+            text-align: left;
+            text-indent: 1em;
+            line-height: 25px;
+        }
+        #login_button{
+            width: 173px;
+            height: 30px;
+            border-radius: 0.3rem;
+            background-color:rgba(57, 147, 250, 0.616);
+            margin-left: 114px;
+        }
+        #bottom_web{
+            margin-top: 10px;
+        }
+        .dotted{
+            color: #bfbfbf;
+            margin: 0 5px;
+            float:right;
+        }
+        .link{
+            text-decoration: none;
+            font-size: 12px;
+            color: #666;
+            float:right;
+            line-height: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div id = "bg">
+        <div id="wrap">
+            <h2>帐号密码登录</h2>
+            <ul>
+                <li>
+                    <input type="text" placeholder="请输入账号" class="name">
+                </li>
+                <li>
+                    <input type="password" placeholder="请输入密码" class="name">
+                </li>
+                <!-- <li>
+                    <input type="text" placeholder="手机号" class="name" >
+                </li>
+                <li>
+                    <input type="text" placeholder="邮箱" class="name" >
+                </li> -->
+            </ul>
+            <button id="login_button">登录</button>
+            <div id="bottom_web">
+                <a href="" class="link" id="forgetpwd">意见反馈</a>
+                <span class="dotted">|</span>
+                <a href="" class="link" id="RNaccount">注册新的账号</a>
+                <span class="dotted">|</span>
+                <a href="" class="link" id="Feedback">忘了密码？</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        const bg = document.querySelector('#bg');
+        const wrap = document.querySelector('#wrap');
+        const ul = wrap.children[1];
+        const RNaccount = document.querySelector('#RNaccount');
+       
+    </script>
+</body>
+</html>
