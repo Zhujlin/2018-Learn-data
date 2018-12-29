@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{dd}}
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+
+        /*
+        使用vue的步骤：
+            1.引入vue
+            2.在body中创建一个元素，并且给它一个class或者id
+            3.实例化Vue
+                {
+                    el：第二步的名字，
+                    data：{
+                        数据：'' | {} | []
+                    }
+                }
+            4.显示数据：
+                {{数据名称}}
+        */
+        let app = new Vue({
+            el:'#app',
+            data:{
+                dd:'你好，世界！~'
+            }
+        })
+
+        setTimeout(()=>{
+            app.dd = "hello word";
+        },2000);
+
+        /*
+        v-if="数据|判断" （<div id='box' v-if='onOff'></div>)
+        只要条件成立，就显示if中的元素
+
+        v-else (注意：必须跟在v-if或者v-if-else后面，不然失效)
+        如果if条件不成立显示当前的元素
+
+        v-else-if 要紧跟 v-if
+        */
+        
+        /*
+        v-show   （<div id='box' v-show='onOff'></div>)
+        条件成立就显示，不成立就 display："none"
+        性能比 v-if 更好
+        */
+     
+     
+      
+       
+    </script>
+</body>
+</html>

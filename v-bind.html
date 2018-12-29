@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #app-div div{
+            width: 100px;
+            height: 100px;
+        }
+        .red{
+            background: red;
+        }
+        .green{
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <div id='app-div'>
+        <button @click='changeC'>点击变绿</button>
+        <button @click='changeR'>点击变红</button>
+        <button @click='change'>变</button>
+        <!-- <div :class="c"></div> -->
+        <div :class='[c1,c2]'></div>
+    </div>
+    <script src="./Vue.js"></script>
+    <script>
+        /*
+        v-bind:class    给元素绑定class
+            缩写：
+                :class
+            一般是用来操作属性的。  class   src   href   style
+            :class='c' 可以写数据
+            :class='{red:true}'  也可以是个对象  red->类名：布尔值，只有为true的时候才显示。
+            :class='[c1,c2]'  c1和c2为对象{red：true}
+        */
+        new Vue({
+            el:'#app-div',
+            methods:{
+                changeC(){
+                    this.onOff = false;
+                    this.c1.red=this.onOff;
+                    this.c2.green=!this.onOff;
+                },
+                changeR(){
+                    this.onOff = true;
+                    this.c1.red=this.onOff;
+                    this.c2.green=!this.onOff;
+                },
+                change(){
+                    this.onOff=!this.onOff
+                   //console.log(this.onOff)
+                    this.c1.red = this.onOff
+                    this.c2.green = !this.onOff
+                }
+            },
+            data:{
+                //c:'',
+                onOff:true,
+                c1:{
+                    red:''
+                },
+                c2:{
+                    green:''
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'>
+        <button @click='add'>添加</button>
+        <button @click='move'>删除</button>
+        <button @click='rev'>翻转</button>
+        <button @click='sort'>排序</button>
+        <ul>
+            <li v-for='(val,key) in arr'>{{val}}</li>
+        </ul>
+    </div>
+    <script src="./Vue.js"></script>
+    <script>    
+        new Vue({
+            el:'#app',
+            data:{
+                arr:[],
+                num:0
+            },
+            methods:{
+                add(){
+                    this.arr.unshift( ++this.num );
+                },
+                move(){
+                    this.arr.shift(this.num);
+                    --this.num;
+                    if(this.num<0)this.num=0;
+                },
+                rev(){
+                    this.arr.reverse()
+                },
+                sort(){
+                    this.arr.sort((a,b)=>{
+                        return a-b;
+                    })
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>

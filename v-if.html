@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .app1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+
+        .app2 {
+            width: 100px;
+            height: 100px;
+            background: green;
+        }
+        .app3 {
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+    </style>
+</head>
+<div id="app">
+    <!-- <div class="app1" v-if="onOff"></div>
+    <div class="app2" v-else></div> -->
+
+    <div class="app1" v-if="onOff=='a'"></div>
+    <div class="app2" v-else-if="onOff=='b'"></div>
+    <div class="app3" v-else></div>
+</div>
+
+
+
+<script src="./vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data:{
+            //onOff:true
+            onOff:'a'
+        }
+    });
+
+
+     /*
+        v-if="数据|判断" （<div id='box' v-if='onOff'></div>)
+        只要条件成立，就显示if中的元素
+
+        v-else (注意：必须跟在v-if或者v-if-else后面，不然失效)
+        如果if条件不成立显示当前的元素
+
+        v-else-if 要紧跟 v-if
+        */
+</script>
+
+<body>
+</body>
+</html>

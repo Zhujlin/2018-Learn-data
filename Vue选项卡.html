@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    .active{
+        background:yellow;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button 
+            v-for = "(val,key) in content"
+            @click='change(key)'
+            :class='{active:key==num}'
+        >按钮{{key+1}}</button>
+
+        <div 
+            v-for ='(val,key) in content'
+            v-show='key==num'
+        >{{val}}</div>
+    </div>
+    <script src="./Vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                num : 0,
+                content:['11111','22222','33333'],
+            },
+            methods:({
+                change(key){
+                    this.num= key
+                }
+            })
+        })
+    </script>
+</body>
+</html>
