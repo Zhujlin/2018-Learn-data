@@ -1,0 +1,5 @@
+jquery  为学习版
+jquery.min  为工作版（压缩版）
+
+下载  node_modules 的密令 ：npm i
+node app开启
