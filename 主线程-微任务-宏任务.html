@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        async function fn() {
+            console.log(1);
+            let b = await fn2();//b拿到return的值 = resolve（）里面的值，并阻塞下面的代码。
+            console.log(b);
+            console.log(2)//出现在await之后，也就是2一定跟着3之后出现
+        };
+        function fn2() {
+            return new Promise((resolve, reject) => {//async、await要配合Promise使用。
+                console.log(9);
+                setTimeout(() => {
+                    resolve(3)//进入宏任务,定时器谁先触发谁先执行。
+                }, 1000)
+            });
+        }
+        // async function fn() {
+        //     //function fn() {
+        //     console.log(1);
+        //     let b = await fn2();
+        //     console.log(2)//进入微任务，谁先进入谁先触发。
+        // };
+        // function fn2() {
+        //     console.log(9);
+        //     setTimeout(() => {
+        //         resolve(3)//进入宏任务,定时器谁先触发谁先执行。
+        //     }, 1000)
+        // };
+        
+        setTimeout(() => {
+            console.log(6)//进入宏任务
+        }, 500);
+        fn()
+        let a = new Promise((resolve, reject) => {
+            console.log(4);
+            resolve()
+        })
+        a.then(() => {
+            console.log(5)//进入微任务
+        });
+        //fn()
+        console.log(8);
+//1,9,4,8,2,5,3,6
+//4,1,9,8,5,2,3,6
+//注：如果await后面的函数，没有被Promise包着。 await 下面的代码会进微任务队列（谁先进入谁先执行），定时器会进宏任务队列（谁先触发谁先执行）。
+//1,9,4,8,5,6,3,2
+//await后面的函数被Promise包着，那么await后面的函数才会阻塞下面的函数，等await后面的函数执行完，再往下执行（只在函数体内发生）。
+
+    </script>
+</body>
+
+</html>
