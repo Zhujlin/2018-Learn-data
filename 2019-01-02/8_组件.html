@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>父组件</h1>
+        <ppa d='传进来的数据' a='传进来的第2个数据'></ppa>
+
+
+    </div>
+
+    <script src="../Vue.js"></script>
+    <script>
+        /*
+        传递数据：
+            1.在组件上挂上一个自定义的属性
+            2.子组件上设置一个props接收
+                props可以为一个数组，数据里面写自定义属性的名字即可
+                比如：
+                    {
+                        props:['d'],
+                        template:`<div>{{d}}</div>`//这里的d就是自定义属性的名字
+                    }
+        */
+        let obj = {
+            props: ['d','a'],
+            template: `
+                <div>
+                    <hr>
+                    <div>铭宝</div>
+                    <hr>
+                    <div>{{d}}</div>
+                    <div>{{a}}</div>
+                </div>
+            `,
+        }
+
+        Vue.component('ppa', obj)
+
+        new Vue({
+            el: '#app',
+        })
+
+
+
+/*
+英文：
+component：组件
+template ：模板
+
+*/
+    </script>
+</body>

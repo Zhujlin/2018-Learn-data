@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{arr}}
+
+        
+    </div>
+<script src="../Vue.js"></script>
+<script>
+    /*
+        父级要传数据给子级：
+            1.通过在子组件的身上加一个v-bind：自定义属性名=父级的数据
+                <ppa v-bind:data="arr"> ->简写<ppa :data="arr">
+            2.子组件通过props去接收
+                Props：['data']
+            3.使用
+                {{data}}
+
+    */
+    let obj={
+        
+    }
+    Vue.component('ppa',obj)
+    new Vue({
+        el:'#app',
+        data:{
+            arr:[1111,2222,3333]
+        },
+    })
+
+
+</script>
+
+</body>
+</html>

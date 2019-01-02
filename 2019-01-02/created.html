@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">>
+    <title>Document</title>
+</head>
+<body>
+    <script src="../Vue.js"></script>
+    <script>
+        //生命周期~联想：expirce  -  cookie的生命周期
+        /*
+        第一个生命周期函数（钩子函数）
+            created：当vue的数据初始化之后调用的函数,this要指向Vue实例。
+
+            当要请求数据的时候，就走created
+        
+        容易懵：
+            生命周期函数，他们啥时候用
+            组件的传递（X）
+        */
+
+
+        new Vue({
+            el:'',
+            created(){
+                //请求数据，添加数据
+                fetch('./data.json')
+                .then(e=>e.json())
+                .then(d=>{
+                    this.arr.push(...d)
+                });
+                console.log(this.arr)
+                
+            },
+            data:{
+                arr:[]
+            },
+            methods:{
+
+            }
+        })
+
+
+    </script>
+</body>
+</html>

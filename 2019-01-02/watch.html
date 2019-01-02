@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <input type="text" v-model='val'> -->
+        <ul>
+            <li v-for='(val,key) in arr' >
+                <input type="checkbox" v-model='val.checked'>
+            </li>
+        </ul>
+        {{arr}}
+    </div>
+    <script src="../Vue.js"></script>
+    <script>
+        /*
+        watch（指定数据的监听器）：
+            当指定数据发生变化的时候才触发。一开始是不会触发的，只有数据变化才触发。
+        联想：computed ，一上来就先触发一次，然后每次数据变化都触发。
+        
+
+
+        watch：{
+            //第一中写法
+            要监听的数据名(新的数据，更新之前的数据){
+                只能监听一层，深层就监听不到
+                []一层       [{}]多层
+            }，
+            //第二种写法
+            要监听的数据名:{
+                handler(新的数据，更新之前的数据){
+
+                },
+                deep：true //深度监听
+            }，
+
+        }
+        */
+        new Vue({
+            el:'#app',
+            data:{
+                //val:getStorage('name1','铭宝')
+                arr:[{checked:true},{checked:false},{checked:false}]
+            },
+            methods:{
+
+            },
+            watch:{
+                arr(val){
+                    localStorage.setItem('data',val)
+                }
+                // val(val,oldval){//函数名，必须和监听的 *数据* 一样
+                //     console.log(val,oldval)//val:改变之后的数据。 oldval：改变之前的数据
+                //     localStorage.setItem('name',val)
+                }
+            
+        })
+
+        function getStorage(name,init,){
+            return localStorage.getItem(name)||init
+        }
+    </script>
+</body>
+</html>

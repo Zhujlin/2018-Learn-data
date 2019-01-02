@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        reduce(回调函数，初始值)
+              当需要计算、统计数组中的每一项的结果时用ta
+              这一次的结果需要上一次的返回
+        */
+        let arr = [2, 4, 6, 8, 10];
+        let a = arr.reduce((a, b) => {//a：代表上一次的结果。  b：是本次循环的那个。
+            return a + b
+        },0);//零是初始值
+        console.log(a);//累加  结果是 30
+
+        let ary = arr.reduce((a,b)=>{
+            a.push(b);
+            return a
+        },[]);
+        console.log(ary)//[2, 4, 6, 8, 10]
+    </script>
+
+</body>
+
+</html>

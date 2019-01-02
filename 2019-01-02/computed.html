@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>computed</title>
+</head>
+
+<body>
+    <div id='app'>
+        全选：<input type="checkbox" v-model='all'/>
+        <hr>
+        <input type="checkbox" v-for='(val,key) in arr' v-model='val.checked'/>
+{{arr}}
+    </div>
+    <script src="../Vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                arr: [
+                    {
+                        checked: false
+                    },
+                    {
+                        checked: false
+                    },
+                    {
+                        checked: false
+                    }
+                ]
+            },
+            computed: {
+                /*当使用get、set的时候，那么computed中定义的属性，为一个对象
+                当不使用get、set的时候，computed中定义的属性可以为函数
+                */
+                all:{
+                    get(){//获取的时候
+                        return this.arr.every(e=>e.checked);
+                    },
+                    set(newValue){//修改的时候，newValue就是改变之后的结果
+                        console.log(newValue)
+                        return this.arr.forEach(e=>e.checked = newValue)
+                    }
+                }
+            }
+        });
+
+
+
+
+
+        /*
+        Object.defineProperty(obj,prop,descriptor)
+        
+        参数：
+        obj-> 目标对象
+        prop-> 需要定义的属性或方法
+        descriptor-> 目标属性所拥有的特性
+        
+        可供定义的特性列表：
+        value->属性的值
+        get->一旦目标属性被访问就调回该方法，并将运算结果返回用户
+        set->一旦目标属性被赋值，就调回该方法
+        writable->是否可写。默认为false，属性值就不能被重写
+        configurable->是否可被删除。如果为false，不能被删除
+        enumerable->是否可枚举（for...in循环遍历），默认false
+        （如果设置为false那么能够被in运算，但是不能被for in循环到）
+        */
+        let obj = {
+            num: 4
+        };
+        let n = 2
+        Object.defineProperty(obj, 'num', {
+            get() {
+                console.log('读的时候触发');
+                return n += 2;
+            },
+            set() {
+                console.log('写的时候触发');
+            }
+        });
+        // console.log(obj.num);//get
+        // obj.num = 5;//set
+        console.log(obj.num < 5 && obj.num > 5)//事件劫持
+
+
+
+
+    </script>
+</body>
+
+</html>
