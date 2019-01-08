@@ -1,0 +1,104 @@
+第一种：typeof  可以检测一些基本的数据类型
+语法：typeof 后面加不加括号都是可以用的
+注意：正则、{}、[]、null输出结果为object
+      所以这个方法并不是很好
+
+例子：
+    console.log(typeof /\d/);//object
+    console.log(typeof {});//object
+    console.log(typeof []);//object
+    console.log(typeof (null));//object
+    console.log(typeof 123);//number
+    console.log(typeof true);//boolean
+    console.log(typeof function () {});//function
+    console.log(typeof (undefined));//undefined
+
+第二种：instanceof  检测当前实例是否隶属于某各类。
+双目运算符 a instanceof b  ,判断a的构造器是否为b，返回值为布尔值
+
+例子：
+    function fn() {}
+    let f = new fn;
+    console.log(f instanceof fn);//true
+    console.log(f instanceof Object);//true
+    let arr = [1,2,3,4];
+    console.log(arr instanceof Array);//true
+
+第三种：constructor  构造函数
+语法：实例.constructor
+
+例子：function fn() {}
+      let f = new fn;
+      console.log(f.constructor.name);//fn
+      console.log(fn.constructor);//Function（）{}
+      console.log(Function.constructor);//Function（）{
+
+第四种：hasOwnporperty  检测当前属性是否为对象的私有属性
+语法: obj.hasOwnporperty("属性名/K值")
+
+例子：let obj = {
+        name:"xx"
+      };
+      console.log(obj.hasOwnProperty('name'));//true
+      console.log(obj.hasOwnProperty('xxxx'));//false
+
+第五种：is Array 判断是否为数组
+例子：console.log(Array.isArray([]));//true
+      console.log(Array.isArray(new Array()));//true
+
+第六种：Object.portotype.toString
+语法：Object.prototype.toString.call([value])
+获取Object.portotype上的toString方法，让方法的this变为需要检测的数据类型值，并且让这个方法执行
+在Number、String、Boolean、Array、Function、RegExp...这些类的原型上都有一个toString方法：这个方法就是把本身的值转化为字符串
+
+
+(12).toString()=>'12'
+(true).toString()=>'true'
+[12,23].toString()=>'12.23'
+...
+
+在Object这个类的原型上也有一个方法toString,但是这个方法并不是把值转换成字符串，而是`返回当前值得所属类详细信息，固定结构：'[object 所属的类]'`
+
+
+var obj ={name:'珠峰'}
+obj.toString()//=>'[object Object]'调取的正是Object.prototype.toString
+
+/*
+ *obj.toString()
+ *  首先执行Object.prototype.tostring方法
+ *  这个方法中的this就是我们操作的数据值obj
+ *  =>总结：Object.prototype.toString执行的时候返回当前方法中的this的所属类信息
+ *  
+ *  也就是，我想知道谁的所属类信息，我们就把这个toString方法执行，并且让this变为我们检测的这个数据值，那么方法返回的结果就是当前检测这个值得所属类信息
+ *  Object.prototype.toString()
+ *  ({}).toString.call([value])
+ */
+
+Object.prototype.toString.call(12)=>'[boject Number]'
+
+Object.prototype.toString.call(true)=>'[boject Boolean]'
+......
+"[object Number]"
+"[object String]"
+"[object Object]"
+"[object Function]"
+"[object Undefined]"
+"[object Null]"
+"[object RegExp]"
+"[object Boolean]"
+
+使用toString检测数据类型，不管你是啥值，我们都可以正常检测出需要的结果（这个方法检测是`万能`的）
+
+话外：
+	1.Math是个对象，不是类。类才有prototype（原型）。`也就是说类都有原型：prototype，对象都有原型链：__proto__，函数既是类，也是对象，也是函数。`
+	2.如何把对象转换成字符串？
+
+	let obj={name:'朱军林'}
+	obj.toString()//=>"[object Object]"
+
+
+	JSON.stringify({name:'朱军林'})
+	"{"name":"朱军林"}"
+	//对象下的toString方法是检测数据类型的，而不是用来转化成字符串的，这时可以用JSON的方法来转化
+
+

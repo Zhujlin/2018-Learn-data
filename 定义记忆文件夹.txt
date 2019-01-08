@@ -1,0 +1,202 @@
+●json是一种数据格式，它本质是字符串，长的像js中的对象
+
+JSON.parse(json)  可以把JSON格式的数据转成js中的对象
+             ( 高版本浏览器才能使用，低版本用json2.js)
+注意:
+       使用JSON.parse的时候必须保证json是标准格式的
+       key值必须有双引号，value值为字符串的也要为双引号
+       key值为单引号会报错。
+
+eval()  能够把字符串尽量转成js能够运行的代码
+      小技巧:
+            在使用eval传化json的时候，json用字符串括号包一下
+                eval('('+json+')')
+     注意:
+           eval是有可能被注入病毒的
+
+JSON.stringify(obj）把对象转成标准json
+     注意:
+         undefined、函数是转不出来的.
+
+●js盒子模型
+>client系列:clientWidth/clientHeight/clientLeft/clientTop ...
+      clientWidth/Height（支持padding，不支持border）
+      clientLeft(左边框)/clientTop(上边框)
+
+ >offset系列:这些属性只能读不能写
+     offsetTop/offsetLeft/offsetWidth/offsetHeight/offsetParent ...
+     offsetWidth/Height（在client的基础上，支持border  （content+border））
+     offsetTop/Left(当前元素的外边框到定位父级内边框的距离）
+     offsetParent:定位父级
+
+ >scrollHeight/scrollWidth/scrollTop/scrollbottom ...
+
+  盒子模型的尺寸:
+     style.width/style.height   行间的样式
+     getComputedStyle(obj).height  计算后的样式 (获取样式表中的样式)
+     obj.currentStyle.height 计算后的样式  IE低版本
+
+  获取容器可视的宽高(拿到的值是：不带单位的，数字)：
+
+     >clientWidth/clientHeight...
+     支持padding，不支持border
+
+     >offsetWidth/offsetHeight...
+     在client的基础上，支持border
+     在没有设置固定高度的时候，值为被内容撑开的高度
+     被*内容*撑开的尺寸(不管加不加固定高都会获取出来):
+
+     >scrollHeight/scrollWidth...  不带边框
+     没有溢出:
+     跟设置的宽高走
+     溢出:
+     content + paddingTop
+     content + paddingLeft
+
+
+     正常用他们必须做到以下几点:
+     1.清除默认的样式
+     2.设置默认的字体大小
+     3.触发haslayout（width/height/定位/zoom）
+
+     offsetParent:定位父级
+     在没有任何定位的情况下它走的是body（在chrome中实测是走html）
+     使用:
+     祖先级节点有相对定位，自己有绝对定位,并且要有初始值。
+
+     offsetLeft -> 当前元素的左外边框到定位父级左内边框的距离
+     使用:
+     祖先级节点有相对定位，自己有绝对定位，并且要有初始值。
+     注意：
+     如果没有定位父级或者祖先级，那么就应该跟html走*/
+
+
+●事件：
+事件是元素身上天生的一个行为方式，它可以理解为一个行为或者做某一件事，大多数都是元素天生自带的。
+
+事件分为
+鼠标事件行为 mouseEvent
+键盘事件行为 keyboardEvent
+普通事件行为 event
+
+鼠标事件行为
+onclick        点击事件
+ondblclick    双击事件
+onmouseover   鼠标划入事件
+onmouseout     鼠标移除事件
+onmouseenter   鼠标划入触发【没有冒泡传播】
+onmouseleave   鼠标移除触发【没有冒泡】
+onmousedown   鼠标按下触发
+onmousewheel   鼠标滚轮滚动的时候（触发一次）
+onscroll     鼠标滚轮滚动的时候（触发多次）
+onmousemove  鼠标移动的时候触发
+
+键盘事件行为
+onkeydown   键盘按下的时候触发
+onkeyup   键盘松开的时候触发
+onkeypress  和onkeydown差不多，但是它返回是ASCII码
+
+表单的事件行为
+onfocus  获取焦点的时候触发
+onblur     失去焦点的时候触发
+onchange  当内容发生改变的时候触发
+onseleted   当选择框选中的时候触发
+onreset   点击重置按钮的时候触发
+onsubmit   当点击提交的时候进行触发
+
+其他事件行为
+onload  当图片或者文本加载结束触发
+onerror  当图片或者文本加载失败后触发
+onresize  当窗口尺寸发生改变后触发
+onabort   当图片或者文本加载中断触发
+onscroll   滚动的时候触发
+
+移动端事件
+单手指
+ontouchstart   手指按下的时候触发
+ontouchmove   手指移动的时候触发
+ontouchend    手指抬起的时候触发
+ontouchchange    手指操作被迫中断的时候触发
+
+多手指
+ongesturestart     多手指按下后触发
+ongestureend    多手指抬起触发
+ongesturchange   多手指改变后触发
+注意：在移动端的时候onclick属于淡季事件，既然是单击事件，
+他会在300ms内等待判断用户是否会连续触发两次，所以移动端onclick事件有300ms延迟
+解决方法：可以用移动端的事件代替onclick，或者引入插件fastclick.js
+
+
+
+_node节点 动态操作DOM
+   1.createElement； 创建一个元素
+    // createElement();// 参数： 字符串； 是一个标签名；
+    //let  p = document.createElement("p");
+    
+     2.appendChild:向元素末尾添加一个子节点;
+    // 容器.appendChild(新元素)
+    //box.appendChild(p);
+
+     3.removeChild : 删除一个子节点
+    // removeChild : 接收一个节点类型的；参数是要删除的这个元素；
+    //let last = document.getElementById("last");
+    //box.removeChild(last)
+
+    4.replaceChild : 替换子节点
+    // replaceChild(new,old); 用新的元素替换原有的元素；
+    //let  p = document.createElement("p");
+    //box.replaceChild(p,last);
+
+     5.insertBefore: 将新的元素插入到指定元素的前面；
+    //insertBefore(new,old)
+    // box.insertBefore(p,last)
+
+     6.cloneNode ;克隆元素;接收一个布尔类型的参数；true,false ;如果不传参数，默认是false；
+    // 浅克隆(true)
+    // 深克隆(false)
+    //console.log(box.cloneNode(true));
+    //a.appendChild(box.cloneNode(true))
+
+     7.getAttribute: 获取行间属性；
+    //  setAttribute : 设置行间属性
+    //  removeAttribute: 删除行间属性；
+    //console.log(box.getAttribute("flag"));
+    //box.setAttribute("o",1)
+    //box.removeAttribute("flag");
+
+DOM : 获取元素的方式
+DOM 节点的属性
+    四种节点类型   nodeType     nodeName      nodeValue
+  1.元素节点        1         大写的标签名      null
+  2.文本节点        3         #text           文本的内容
+  3.注释节点        8         #comment        注释的内容
+  4.document        9         #document        null
+
+节点的属性
+ 1.childNodes :..........所有的子节点
+ 2.children  ：..........子元素节点
+ 3.parentNode  :.........父亲节点
+ 4.nextSibling ：.........下一个弟弟节点
+   nextElementSibling ：.下一个弟弟元素节点
+ 5.previousSibling :    .上一个哥哥节点
+     previousElementSibling ：上一个哥哥元素节点
+ 6.firstChild ：.........第一个子节点
+    firstElementChild ：.第一个子元素节点
+ 7.lastChild
+    lastElementChild
+
+DOM映射:
+    js元素和DOM中的元素是一一对应的，操作元素的时候不是重新创建一个元素操作，
+    而是把对应的元素拿来操作
+
+DOM回流:
+    当页面的元素发生几何变化的时候（宽、高、位置、创建元素），都会导致整个页面重排
+    浏览器会重新计算结构位置，重新渲染页面，这就叫DOM回流，
+    DOM操作是非常消耗性能，所以尽量减少DOM的操作
+            
+DOM重绘:
+    就是改变了背景颜色、边框、字体的颜色,浏览器重新绘制颜色的过程。
+
+    createDocumentFragment：文档碎片
+    在盒子里面可以放入若干元素，最后打包一次性塞到页面中
+    如果要添加内容通过appendChild添加
