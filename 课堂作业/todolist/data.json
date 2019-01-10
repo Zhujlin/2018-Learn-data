@@ -1,0 +1,5 @@
+[
+{ "id": 1, "text": "双击，在这里修改内容后回车 ", "checked": true ,"onOff":true},
+{ "id": 2, "text": "nihao2 ", "checked": false ,"onOff":true}, 
+{ "id": 3, "text": "nihao3 ", "checked": false ,"onOff":true}
+]

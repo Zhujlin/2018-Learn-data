@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>父组件</h1>
+        <!-- <ul>
+            <li v-for='(val,key) in arr'>{{val.name}}</li>
+        </ul> -->
+        {{arr}}
+        <hr>
+        <ppa :d="arr">组件</ppa>
+
+    </div>
+    <script src="../Vue.js"></script>
+    <script>
+        //用一下组件
+        let obj = {
+            //引入父级的数据
+            props:['d'],
+            //template:里面一定要用一个大盒子套起来，不然只显示第一条数据
+            template: `
+            <div>
+                <button>按钮</button>
+                <ul>
+                    <li 
+                        v-for = '(val,key) in ary'
+                        
+                        @click='onOff(val)'
+                    ><input type="checkbox"/>{{val.name}}:{{val.checked}}</li>
+                </ul>
+            </div>
+            `,
+
+            methods:{
+                onOff(val){
+                    
+                    val.checked = !val.checked
+                }
+            },
+//v-model='{val.checked}'
+
+            data() {
+                return {
+                    ary:JSON.parse(JSON.stringify(this.d))//深克隆一份数据给子级，再操作自己的数据，就不会影响到父级的数据
+                }
+            }
+        };
+
+
+        Vue.component('ppa', obj);
+
+        new Vue({
+            el: '#app',
+            data: {
+                arr: [
+                    {
+                        id: 1,
+                        name: 'a',
+                        checked:false
+                    },
+                    {
+                        id: 2,
+                        name: 'b',
+                        checked:false
+                    },
+                    {
+                        id: 3,
+                        name: 'c',
+                        checked:false
+                    },
+                ]
+            }
+        })
+
+
+    </script>
+
+</body>
+
+</html>

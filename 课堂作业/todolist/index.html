@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>todos</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+
+<body>
+    <section class="todoapp">
+        <div>
+            <header class="header">
+                <h1>todos</h1>
+                <input class="new-todo" placeholder="请输入内容" value="" v-model='value' @keyup.13="add">
+            </header>
+            <section class="main">
+                <input class="toggle-all" type="checkbox" checked="" v-model='all'>
+                <ul class="todo-list">
+                    <li v-for='(val,key) in render(a)' :class={completed:val.checked} v-show='val.onOff'>
+                        <div class="view" @dblclick='xiugai(val.id)'>
+                            <input class="toggle" type="checkbox" checked="" v-model='val.checked'>
+                            <label>{{val.text}},{{val.checked}}</label>
+                            <button class="destroy" @click='rm(val.id)'></button>
+                        </div>
+                        <input class='new-todo' v-model='val.text' v-show='b==val.id' @keyup.13='ok'>
+                        <!-- <input class="new-todo" value="多多对对对" style='display:block'>{{val.id}} -->
+                    </li>
+                </ul>
+            </section>
+            <footer class="footer" v-show='!!arr.length'>
+                <span class="todo-count">
+                    <strong>{{fn}}</strong>
+                    <span>条未选中</span>
+                </span>
+                <myfooter :n='arr' @givefather='render'></myfooter>
+            </footer>
+        </div>
+    </section>
+    <script src="./Vue.js" charset="utf-8"></script>
+    <script src="./component/footer.js"></script>
+    <script>
+        //*** v-for='(val,key) in render(a)'  循环处理过的数据，让合适的内容显示
+   
+        new Vue({
+            el: '.todoapp',
+            created() {
+                //console.log(JSON.parse(localStorage.getItem('data')).length)
+                if (!JSON.parse(localStorage.getItem('data')).length) {
+                    fetch('./data.json')
+                        .then(e => e.json())
+                        .then(d => {
+                            this.arr.push(...d)
+                        });
+                }
+            },
+            data: {
+                arr: getStorage('data'),
+                value: '',
+                num: 0,
+                n: null,
+                filters: [],
+                a: 1,//把子级(footer) 传过来的数据存起来。
+                b:null //给修改框用的
+            },
+            computed: {
+                all: {
+                    get() {//获取的时候
+                        return this.arr.every(e => e.checked);
+                    },
+                    set(newValue) {//修改的时候，newValue就是改变之后的结果
+                        //  console.log(newValue)
+                        this.arr.forEach(e => e.checked = newValue)
+                    }
+                },
+                fn() {
+                    this.num = 0
+                    this.arr.forEach(e => {
+                        if (!e.checked) {
+                            this.num += 1
+                        }
+                    })
+                    return this.num
+                },
+            },
+            methods: {
+                add() {//添加数据
+                    if (this.value) {
+                        this.arr.unshift({
+                            id: new Date(),
+                            text: this.value,
+                            checked: false,
+                            onOff: true
+                        });
+                    }
+                    this.value = '';
+                },
+                rm(id) {//删除数据
+                    this.arr = this.arr.filter(e => e.id != id);
+                },
+                render(ary) {//筛选数据，通过onOff来控制v-show（显示/隐藏）
+                    this.a = ary
+                    //console.log(ary);
+                    switch (ary) {
+                        case 1://全选
+                            this.arr.forEach(e => e.onOff = true)
+                            break;
+                        case 2://未选中
+                            this.arr.forEach(e => e.onOff = !e.checked)
+                            break;
+                        case 3://已选中
+                            this.arr.forEach(e => e.onOff = e.checked)
+                            break;
+                        default:
+                            this.arr.forEach(e => e.onOff = true)
+                            break;
+                    }
+                    return this.arr;
+                },
+                xiugai(id){//修改框
+                    this.b = id;
+                },
+                ok(){
+                    this.b = null;
+                }
+            },
+            watch: {
+                arr: {
+                    handler(v) {
+                        localStorage.setItem('data', JSON.stringify(v));//把变化之后的数据v，存到本地缓存中
+                        // console.log(this.a)
+                        // console.log(this.arr)
+                        // if (this.a) {                   //此方法改变了arr，就递归了，（错误的方法）
+                        //     this.arr.forEach(d => {
+                        //         d.onOff = false;
+                        //         Array.from(this.a).forEach(e => {
+                        //             if (e.id == d.id) {
+                        //                 d.onOff = true;
+                        //             }
+                        //         })
+                        //     })
+                        // };
+                    },
+                    deep: true
+                }
+            }
+        })
+
+        // function renderfn() {//this指向window，又不能使用this  （错误的方法）
+        //     console.log(this)
+        // }
+
+
+        function getStorage(name) {
+            let data = localStorage.getItem(name) || `[
+                { "id": 1, "text": "双击，在这里修改内容后回车 ", "checked": true ,"onOff":true},
+                { "id": 2, "text": "nihao2 ", "checked": false ,"onOff":true}, 
+                { "id": 3, "text": "nihao3 ", "checked": false ,"onOff":true}
+                ]`;
+            return JSON.parse(data); //[] -> [{}]
+        }
+
+        console.log(![].length)
+    </script>
+
+</body>
+
+</html>    
