@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+//传统的交互方式
+<form action="/get">
+用户名：<input type="text" use=""/>
+密码：<input type="password"/>
+<input type="submit" value="提交"/>
+<form>
+//jq的ajax 的方式
+/*
+url:请求地址   （后台童鞋一定会你的）
+data：数据的拼接
+dataType  --（等同于）->   JSON.parse()    （把json转成对象）
+success:function(data){
+    data ->为object，直接使用的数据
+}
+$.ajax({
+    url:必须传，（向后台要）
+    data：{
+        人：刘德华
+        狼：
+        神：
+        key（为前后端一起定义的字段）：val（前端传的数据）
+    }，
+    success：function(json/data){
+        let data = JSON.parse(json);//如果拿到的数据是json就转成对象，如果是data（对象）就直接使用
+        //dataType:"json"
+        if(data.code === 0){
+            $("#txt").removeClass("ok");
+            $("#txt").addClass("error");
+        }
+        if(data.code === 1){
+            $("#txt").removeClass("error");
+            $("#txt").addClass("ok");
+        }
+    }
+})
+*/
+
+/*
+    ajax 的模型叫 电话模式
+    1.先有一个电话      创建ajax对象
+    2.输入号码(拨号)    填写请求地址  xhr.open("请求的方式"，"url地址"+具体字段，请求异步默认为true)
+    3.发送             send（）
+    4.等待             xhr.onload
+    5.成功接收         在xhr.onload中接收到数据  xhr.responseText
+*/
+/*
+btn.onclick = function(){
+    let xhr = new XMLHttpRequest;//1.创建ajax对象
+    xhr.open("get","/get？user="+txt.value,true)//第三个参数：是否异步（true：要异步）; 2.填写请求地址
+    xhr.send();  //3.发送
+    xhr.onload = function(){    //4.等待服务器响应
+        //console.log(xhr.responseText)  //5.接收的信息
+        let data = JSON.parse(xhr.responseText);
+
+        if(data.code == 0){
+            txt.className = "error"
+        }else if(data.code == 1){
+            txt.className = "ok"
+        }
+    }
+}
+*/
+
+
+</body>
+</html>
